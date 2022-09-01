@@ -13,8 +13,12 @@ flake8
 pytest
 yapf
 
-# utilities
-six>=1.14
-joblib
-memoized-property
-termcolor
+# # utilities
+# six>=1.14
+# joblib
+# memoized-property
+# termcolor
+
+# # model
+# tensorflow
+# tensorflow_hub
