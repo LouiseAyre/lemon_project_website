@@ -3,7 +3,7 @@ import requests
 import base64
 
 # url='http://localhost:8000/predict' #this is a local api
-url ="https://lemonprojectapi-tjtjmdtcna-de.a.run.app/predict"
+url ="https://lemonprojectapi2-tjtjmdtcna-de.a.run.app/predict"
 
 lemon_background = "https://storage.googleapis.com/wagon-data-852-chin/lemon_background.png"
 lemon_bg = "https://storage.googleapis.com/wagon-data-852-chin/lemon_bg.png"
@@ -29,7 +29,7 @@ def lemon_health(new_image):
 
     if type(health_rating) == str:
         health = "No lemon found, please try again"
-    if health_rating > 0.9:
+    elif health_rating > 0.9:
         health = "Unhealthy"
     else:
         health = "Healthy"
@@ -41,7 +41,7 @@ direction = st.radio('Select an option',('Upload jpg','Take a picture'))
 
 
 if direction == 'Upload jpg':
-    new_image = st.file_uploader("Upload jpg", type=".jpg", accept_multiple_files=False)
+    new_image = st.file_uploader("Upload jpg", type=[".jpg",".png",".jpeg"], accept_multiple_files=False)
 else:
     direction == 'Take a picture'
     new_image = st.camera_input("Take a picture")
