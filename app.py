@@ -27,6 +27,8 @@ def lemon_health(new_image):
     response = requests.post(url,files=files).json()
     health_rating = response['health']
 
+    if type(health_rating) == str:
+        health = "No lemon found, please try again"
     if health_rating > 0.9:
         health = "Unhealthy"
     else:
@@ -35,20 +37,20 @@ def lemon_health(new_image):
 
 st.markdown("**Lemon Health Assessment**")
 
-direction = st.radio('Select an option',('upload jpg','take a picture'))
+direction = st.radio('Select an option',('Upload jpg','Take a picture'))
 
 
-if direction == 'upload jpg':
+if direction == 'Upload jpg':
     new_image = st.file_uploader("Upload jpg", type=".jpg", accept_multiple_files=False)
 else:
-    direction == 'take a picture'
+    direction == 'Take a picture'
     new_image = st.camera_input("Take a picture")
 
 
 if new_image is not None:
-    st.write("image uploaded")
+    st.write("Image uploaded")
     st.image(new_image, width=300)
     health_rating = lemon_health(new_image)
-    st.write("health of lemon:", health_rating)
+    st.write("Lemon health:", health_rating)
 else:
-    st.write("please upload image")
+    st.write("Please upload image")
